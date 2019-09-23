@@ -1,0 +1,156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ELEE	3720 Electromechanical Energy Conversion: Report template
+% By Ratheesh Ravindran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{hyperref}
+
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+\begin{document}
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.1mm}} 
+\center % Center everything on the page
+ 
+%---------------------------------------------------------------------------------
+%	HEADING SECTIONS (Enter the Homework/assignment No., only)
+%---------------------------------------------------------------------------------
+\textsc{\Large Middle East Technical University}\\[0.5cm] % heading course Number
+\textsc{\Large Department of Computer Engineering}\\[0.5cm] % heading course name
+%\textsc{\large Homework/Assignment No:- }\\[0.5cm] % Minor heading
+%---------------------------------------------------------------------------------
+%	TITLE SECTION (Replace 'TITLE' with the Homework/assignment Name/title)
+%---------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge CENG300}\\[0.3cm]
+{ \huge SUMMER PRACTICE REPORT}\\[0.1cm] % Title of your Homework/assignment
+%\HRule \\[1.5cm]
+ 
+ \textsc{JotForm Yazılım A.Ş.}\\[0.1cm]
+ \textsc{Hacettepe Teknokent Safir Bloklar C Blok Kat:6}
+ \HRule \\[1.5cm]
+ 
+%---------------------------------------------------------------------------------
+%	AUTHOR SECTION (EDIT THE NAME and T.NO., only)
+%---------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+
+\emph{Student's Name:}\\
+Ozan \textsc{Şan}\\  % Enter Your name and T.No.
+\end{flushleft}
+%\begin{flushleft} \large
+
+%\emph{Author 2:}\\
+%Amna \textsc{Author-2}\\ T.No.  % Enter Your name and T.No.
+%\end{flushleft}
+
+
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Instructor:} \\
+Prof.Dr.Göktürk Üçoluk% \textsc{Üçoluk} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[1cm]
+{\large \today}\\[1cm] % Date, change the \today to a set date if you want to be precise
+\includegraphics{cmetusmallest.png}\\[1.0cm]% \\[0.5cm] % 
+%\vfill % Fill the rest of the page with white-space
+Start Date: 10.06.2019 \\
+End Date: 22.07.2019 \\
+Total Working Days: 30 \\[1.2cm]
+Student's Signature \hspace{150px} Organization Approval \\
+\end{titlepage}
+%\include{GradingRubric}
+\tableofcontents          % Required
+%\listoffigures
+%\listoftables
+\newpage
+
+% Do not edit the below sections, enter all details in respective chapters
+% Add the images/screen-shorts to the image folder and insert them in the respective chapters
+
+\section{Introduction}
+\input{Chapters/02_Introduction}
+
+\section{About JotForm Inc.}
+\input{Chapters/Jotform.tex}
+
+\section{Project}
+The project I have completed is called JFM Overseer. Overseer is an application written in Python 3.7, and is capable of predicting time series. The overall structure of the application is as in the following diagram: \\
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|ll} 
+\cline{1-1}\cline{3-3}
+GUI components (PyQT5) & \multicolumn{1}{l|}{$\rightarrow$} & \multicolumn{1}{l|}{Matplotlib}  \\ 
+\cline{1-1}\cline{3-3}
+Facebook Prophet \& StatsModels  &                         &                        \\ 
+\cline{1-1}
+Pandas  &                         &                        \\ 
+\cline{1-1}
+Time Series Data (.csv)  &                         &                        \\
+\cline{1-1}
+\end{tabular}
+\end{table} \\
+The components and how to set them up are as follows:
+\subsection{Time Series Data Specifications}
+Overseer is a tool to analyze Time Series data, which must be given to the program as .csv files, with the following structure: \\
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{| l | l |}
+$t$    & $y$    \\
+$t_0$  & $y_0$  \\
+\vdots & \vdots
+\end{tabular}
+\end{table}
+In this representation, $t$ must correspond to a date-time value, mainly, parse-able by Matplotlib and other software used. The values for y must be integers. \\
+This lets us create a function $F(t) = y$, which is useful in upcoming definitions.
+My goal was mainly to produce a prediction, namely, we have to define values $m_t, n_t$ such that for any $t > t_{end}$, where the last observed point of the function F is at time $t_0 + end$, the equation
+\begin{equation}
+	P(m_{t} < F(t) < n_{t}) = 0.95
+\end{equation}
+must hold. This corresponds to creating a $95\%$ probability interval for the possible observed values of the function $F$ in the future, and means that we have made a prediction. The values $m_t$ and $n_t$ can be averaged to yield a possible future value of $F$. The process for doing this was explained in (Box and Wilkins CITE). However, before getting to that, we must first process the data. 
+
+
+
+\section{Methodology}
+\input{Chapters/03_Methodology_Algorithm_Theory}
+
+\section{Results}
+\input{Chapters/04_Results}
+
+\section{Discussions and Conclusion}
+\input{Chapters/05_DiscussionsConclusion}
+
+\bibliographystyle{plain}
+\bibliography{Bibliography.bib}
+
+\appendix
+\section{Appendix}
+\input{Chapters/06_Appendix1}
+
+
+%---------------------------------------------------------------------------------
+%	Example SECTION (Remove this section to finalize the report.
+
+
+\section{Example steps}
+\input{Chapters/Example} % Remove this line to finalize the report.
+%---------------------------------------------------------------------------------
+
+
+\end{document}
+
+
+% Note: Again, you don’t need to answer just the above questions. They are being provided to give you a flavor of what is required for each section. Use your judgment and initiative to add or subtract based on the specific homework. You can add any other conclusion or discuss any other aspect of your effort that you think it is important to highlight.
+
+% Also ensure to attach the MATLAB or MULTISIM files with this report
