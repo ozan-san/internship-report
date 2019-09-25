@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{TSAForecasting}
+By~Box, Gwilym Jenkins, Gregory Reinsel, and Greta Ljung.
+\newblock {\em Time Series Analysis: Forecasting and Control}, volume~68.
+\newblock 01 2016.
+
+\bibitem{gratzer2007more}
+George Gr{\"a}tzer.
+\newblock {\em More math into latex}.
+\newblock Springer Science \& Business Media, 2007.
+
+\end{thebibliography}
