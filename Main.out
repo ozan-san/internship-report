@@ -1,22 +1,32 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{About JotForm Inc.}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Structure of the company}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Products offered by JotForm}{section.2}% 4
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Form Builder}{subsection.2.2}% 5
-\BOOKMARK [3][-]{subsubsection.2.2.2}{PDF Editor}{subsection.2.2}% 6
-\BOOKMARK [3][-]{subsubsection.2.2.3}{JotForm Sheets}{subsection.2.2}% 7
-\BOOKMARK [1][-]{section.3}{Project}{}% 8
-\BOOKMARK [2][-]{subsection.3.1}{Time Series Data Specifications}{section.3}% 9
-\BOOKMARK [1][-]{section.4}{Methodology}{}% 10
-\BOOKMARK [1][-]{section.5}{Results}{}% 11
-\BOOKMARK [1][-]{section.6}{Discussions and Conclusion}{}% 12
-\BOOKMARK [1][-]{appendix.A}{Appendix}{}% 13
-\BOOKMARK [1][-]{appendix.B}{Example steps}{}% 14
-\BOOKMARK [2][-]{subsection.B.1}{Sub Sections}{appendix.B}% 15
-\BOOKMARK [2][-]{subsection.B.2}{Comments}{appendix.B}% 16
-\BOOKMARK [2][-]{subsection.B.3}{Tables and Figures}{appendix.B}% 17
-\BOOKMARK [2][-]{subsection.B.4}{Mathematics}{appendix.B}% 18
-\BOOKMARK [2][-]{subsection.B.5}{Lists}{appendix.B}% 19
-\BOOKMARK [2][-]{subsection.B.6}{Bibliography}{appendix.B}% 20
-\BOOKMARK [2][-]{subsection.B.7}{Hyperlink to a website}{appendix.B}% 21
-\BOOKMARK [2][-]{subsection.B.8}{Learn LaTeX in 30 minutes}{appendix.B}% 22
+\BOOKMARK [1][-]{section.2}{Project}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Analysis Phase}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Design Phase}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Implementation Phase}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Time Series Data Specifications}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Pandas}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Installation}{subsection.2.5}% 8
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Usage}{subsection.2.5}% 9
+\BOOKMARK [2][-]{subsection.2.6}{Facebook Prophet}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.6.1}{Installation}{subsection.2.6}% 11
+\BOOKMARK [3][-]{subsubsection.2.6.2}{Usage}{subsection.2.6}% 12
+\BOOKMARK [3][-]{subsubsection.2.6.3}{Possible issues with Facebook Prophet}{subsection.2.6}% 13
+\BOOKMARK [2][-]{subsection.2.7}{Statsmodels}{section.2}% 14
+\BOOKMARK [3][-]{subsubsection.2.7.1}{Installation}{subsection.2.7}% 15
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Usage}{subsection.2.7}% 16
+\BOOKMARK [3][-]{subsubsection.2.7.3}{Possible Drawbacks of StatsModels}{subsection.2.7}% 17
+\BOOKMARK [2][-]{subsection.2.8}{PyQt5 \(QT Framework\)}{section.2}% 18
+\BOOKMARK [3][-]{subsubsection.2.8.1}{Installation}{subsection.2.8}% 19
+\BOOKMARK [3][-]{subsubsection.2.8.2}{Usage}{subsection.2.8}% 20
+\BOOKMARK [3][-]{subsubsection.2.8.3}{Possible drawbacks of PyQt5}{subsection.2.8}% 21
+\BOOKMARK [2][-]{subsection.2.9}{Matplotlib}{section.2}% 22
+\BOOKMARK [3][-]{subsubsection.2.9.1}{Installation}{subsection.2.9}% 23
+\BOOKMARK [3][-]{subsubsection.2.9.2}{Usage}{subsection.2.9}% 24
+\BOOKMARK [3][-]{subsubsection.2.9.3}{Possible issues with Matplotlib}{subsection.2.9}% 25
+\BOOKMARK [2][-]{subsection.2.10}{Testing Phase}{section.2}% 26
+\BOOKMARK [1][-]{section.3}{About JotForm Inc.}{}% 27
+\BOOKMARK [2][-]{subsection.3.1}{Structure of the company}{section.3}% 28
+\BOOKMARK [2][-]{subsection.3.2}{Products offered by JotForm}{section.3}% 29
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Form Builder}{subsection.3.2}% 30
+\BOOKMARK [3][-]{subsubsection.3.2.2}{PDF Editor}{subsection.3.2}% 31
+\BOOKMARK [3][-]{subsubsection.3.2.3}{JotForm Sheets}{subsection.3.2}% 32

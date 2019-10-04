@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{Pandas}
+Pandas Community.
+\newblock {Pandas} description, 2019.
+\newblock URL: \url{https://pandas.pydata.org/}.
+
+\bibitem{Matplotlib}
+H.~John, D.~Darren, F.~Eric, Michael D., and Matplotlib development team.
+\newblock {Matplotlib} description, 2012.
+\newblock URL: \url{https://matplotlib.org/}.
+
+\bibitem{StatsModels}
+P.~Josef, S.~Skipper, T.~Jonathan, and statsmodels developers.
+\newblock {StatsModels} description, 2018.
+\newblock URL: \url{http://www.statsmodels.org/stable/index.html}.
+
+\bibitem{PyQt}
+Riverbank~Computing Limited.
+\newblock {PyQt} description, 2018.
+\newblock URL: \url{https://www.riverbankcomputing.com/software/pyqt/intro}.
+
+\bibitem{FBProphet}
+Facebook~Open Source.
+\newblock {Prophet} description, 2019.
+\newblock URL: \url{https://facebook.github.io/prophet/}.
+
+\bibitem{ForecastingAtScale}
+Sean~J. Taylor and Benjamin Letham.
+\newblock Forecasting at scale.
+\newblock {\em The American Statistician}, 72(1):37--45, 2018.
+\newblock \href
+  {http://arxiv.org/abs/https://doi.org/10.1080/00031305.2017.1380080}
+  {\path{arXiv:https://doi.org/10.1080/00031305.2017.1380080}}, \href
+  {https://doi.org/10.1080/00031305.2017.1380080}
+  {\path{doi:10.1080/00031305.2017.1380080}}.
+
+\end{thebibliography}

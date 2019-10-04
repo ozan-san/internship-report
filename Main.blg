@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Arch Linux)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Main.aux
+The style file: plainurl.bst
+Reallocated glb_str_ptr (elt_size=8) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=8) to 20 items from 10.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Database file #1: Bibliography.bib
+Warning--entry type for "Pandas" isn't style-file defined
+--line 21 of file Bibliography.bib
+Warning--entry type for "FBProphet" isn't style-file defined
+--line 52 of file Bibliography.bib
+Warning--entry type for "StatsModels" isn't style-file defined
+--line 60 of file Bibliography.bib
+Warning--entry type for "PyQt" isn't style-file defined
+--line 68 of file Bibliography.bib
+Warning--entry type for "Matplotlib" isn't style-file defined
+--line 78 of file Bibliography.bib
+You've used 6 entries,
+            2882 wiz_defined-function locations,
+            660 strings with 5853 characters,
+and the built_in function-call counts, 2387 in all, are:
+= -- 233
+> -- 92
+< -- 0
++ -- 34
+- -- 28
+* -- 119
+:= -- 348
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 32
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 56
+empty$ -- 250
+format.name$ -- 28
+if$ -- 633
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 1
+newline$ -- 34
+num.names$ -- 12
+pop$ -- 83
+preamble$ -- 1
+purify$ -- 26
+quote$ -- 0
+skip$ -- 175
+stack$ -- 0
+substring$ -- 45
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 24
+warning$ -- 0
+while$ -- 13
+width$ -- 7
+write$ -- 66
+(There were 5 warnings)

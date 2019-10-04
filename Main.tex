@@ -3,17 +3,34 @@
 % By Ratheesh Ravindran
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt]{article}
+\usepackage{setspace}
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage[procnames]{listings}
 \graphicspath{{Images/}}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{hyperref}
-
+\usepackage{floatrow}
 %\usepackage{fancyhdr}
 %\pagestyle{fancy}
+
 \begin{document}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+ 
 \begin{titlepage}
 \newcommand{\HRule}{\rule{\linewidth}{0.1mm}} 
 \center % Center everything on the page
@@ -81,12 +98,26 @@ Student's Signature \hspace{150px} Organization Approval \\
 \section{Introduction}
 \input{Chapters/02_Introduction}
 
-\section{About JotForm Inc.}
-\input{Chapters/Jotform.tex}
+
 
 \section{Project}
-The project I have completed is called JFM Overseer. Overseer is an application written in Python 3.7, and is capable of predicting time series. The overall structure of the application is as in the following diagram: \\
-\begin{table}[ht]
+The project I have completed is called JFM Overseer. Overseer is an application written in Python 3.7, and is capable of predicting time series. Below is a screenshot taken from the application: \\
+\begin{center}
+
+
+\begin{figure}[th!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Images/sarimax-window.png}
+    \caption{A Screenshot From The Application}
+    \label{fig:SARIMAXWindow}
+\end{figure}
+\end{center}
+The components and how to set them up are explained in Section \ref{sec:pyqt5}.
+\subsection{Analysis Phase}
+Analyzing the problem of efficiently forecasting time series was especially difficult because the texts for this problem is intended for statisticians and economists, but as a future computer engineer, I've found that practical examples on \textbf{Kaggle} and other Data Science learning sites were especially helpful. 
+\subsection{Design Phase}
+The overall structure of the application is as in the following diagram:\\
+\begin{table}[ht!]
 \centering
 \begin{tabular}{|l|ll} 
 \cline{1-1}\cline{3-3}
@@ -100,8 +131,12 @@ Time Series Data (.csv)  &                         &                        \\
 \cline{1-1}
 \end{tabular}
 \end{table} \\
-The components and how to set them up are as follows:
+In Section \ref{sec:pyqt5} the visual design phase is explained further.
+
+\subsection{Implementation Phase}
+This is quite a lengthy topic, and it will be discussed further, beginning with Section \ref{sec:tsds} and until Section \ref{sec:testing}.
 \subsection{Time Series Data Specifications}
+\label{sec:tsds}
 Overseer is a tool to analyze Time Series data, which must be given to the program as .csv files, with the following structure: \\
 
 \begin{table}[ht]
@@ -115,36 +150,270 @@ $t_0$  & $y_0$  \\
 In this representation, $t$ must correspond to a date-time value, mainly, parse-able by Matplotlib and other software used. The values for y must be integers. \\
 This lets us create a function $F(t) = y$, which is useful in upcoming definitions.
 My goal was mainly to produce a prediction, namely, we have to define values $m_t, n_t$ such that for any $t > t_{end}$, where the last observed point of the function F is at time $t_0 + end$, the equation
-\begin{equation}
+\begin{equation*}
 	P(m_{t} < F(t) < n_{t}) = 0.95
-\end{equation}
-must hold. This corresponds to creating a $95\%$ probability interval for the possible observed values of the function $F$ in the future, and means that we have made a prediction. The values $m_t$ and $n_t$ can be averaged to yield a possible future value of $F$. The process for doing this was explained in (Box and Wilkins CITE). However, before getting to that, we must first process the data. 
+\end{equation*}
+must hold. This corresponds to creating a $95\%$ probability interval for the possible observed values of the function $F$ in the future, and means that we have made a prediction. The values $m_t$ and $n_t$ can be averaged to yield a possible future value of $F$. For making this possible, we must first structure the data in a suitable way.
+\subsection{Pandas}
+pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language.\cite{Pandas}
+\subsubsection{Installation}
+Since our app runs best on Anaconda distributions, the suitable way to install pandas is:
+\begin{lstlisting}[language=bash, backgroundcolor = \color{lightgray}]
+conda install pandas
+\end{lstlisting}
+One can also use, in a plain Python environment,
+\begin{lstlisting}[language=bash, backgroundcolor = \color{lightgray}]
+pip install pandas
+\end{lstlisting}
+\subsubsection{Usage}
+An example of loading a .csv file, processing it to a uniform format, namely, a ``timeseries":
+\begin{lstlisting}[language=Python]
+	import pandas as pd
+	df = pd.read_csv(FILENAME)
+	# FBProphet expects the data
+	# to conform to a format, as such:
+	df.columns = ['ds', 'y']
+	# We need to parse the dates
+	# to yield date-time objects
+	df['ds'] = df['ds'].apply(pd.to_datetime)
+	# After this, df is ready to be processed. 
+\end{lstlisting}
+If needed, multiple sources can be loaded and processed to yield a single table using Pandas, as if working with a spreadsheet editor.
+\subsection{Facebook Prophet}
+Prophet is a forecasting procedure implemented in R and Python. It is fast and provides completely automated forecasts that can be tuned by hand by data scientists and analysts \cite{FBProphet}. The process used in automating FBProphet was explained in \cite{ForecastingAtScale}.
+\subsubsection{Installation}
+For this package, and with all other packages, it is recommended to use Anaconda distributions. \\
+For an Anaconda distributed Python installation, one can simply use:
+\begin{lstlisting}[language=bash]
+conda install -c conda-forge fbprophet
+\end{lstlisting}
+to install Facebook Prophet. For certain situations (for example, working in a computer with little storage space),
+\begin{lstlisting}[language=bash]
+pip install fbprophet
+\end{lstlisting}
+should still work.
+\subsubsection{Usage}
+The usage of FBProphet follows a simple direction, we first load and structure the data for Prophet, import fbprophet and start an instance of the class ``Prophet", fit the data and create a future dataframe for Prophet, then see the results for the future dataframe with the help of Prophet. As example:
+\begin{lstlisting}[language=Python]
+	# In previous sections, we have
+	# already loaded the data in the
+	# 'df' variable.
+	import fbprophet as fbp
+	prophet = fbp.Prophet()
+	# We then fit the timeseries:
+	prophet.fit(df)
+	# We create a future dataframe
+	# for seeing the results
+	# We provide the periods as 12
+	# for yearly seasonality
+	future = prophet.make_future_dataframe(periods=12)
+	# we can now see the results
+	forecast = prophet.predict(future)
+	# forecast variable will have
+	# columns as 'yhat', 'yhat_lower',
+	# and 'yhat_upper'
+\end{lstlisting}
+\subsubsection{Possible issues with Facebook Prophet}
+\label{sec:prophet-issues}
+The developers of Facebook Prophet have their own datetime format for parsing, and this causes issues. In the source code of the package, there is a line:
+\begin{lstlisting}[language=Python]
+pandas.plotting.deregister_matplotlib_converters()
+\end{lstlisting}
+This line of code breaks the system if we are including Prophet after Pandas as I've used \textbf{pd.to\_datetime} for converting strings of dates into datetime objects, and the solution in my case was adding the following line wherever I've imported Facebook Prophet:
+\begin{lstlisting}[language=Python]
+pandas.plotting.register_matplotlib_converters()
+\end{lstlisting}
+This sadly breaks the plotting functionality of Facebook Prophet, but in my case, as I've done all of my plotting with Matplotlib, it does not really matter.
+\subsection{Statsmodels}
+statsmodels is a Python module that provides classes and functions for the estimation of many different statistical models, as well as for conducting statistical tests, and statistical data exploration.\cite{StatsModels}
+\subsubsection{Installation}
+As usual, we both have a Conda way and a native Pip way of installing the package.
+\begin{lstlisting}[language=bash, backgroundcolor = \color{lightgray}]
+	conda install -c conda-forge statsmodels
+\end{lstlisting}
+\centerline{or...}
+\begin{lstlisting}[language=bash, backgroundcolor = \color{lightgray}]
+	pip install -U statsmodels
+\end{lstlisting}
+\subsubsection{Usage}
+The usage for this environment is significantly more involved than of Facebook Prophet. First of all, since statsmodels offers a lot of statistical framework, it can simply not operate on the principle ``set, and go". We will use a type of modelling in Econometrics called a \textbf{SARIMAX} model, short for ``Seasonal AutoRegressive Integrated Moving Average with eXogenous regressors model". We need to determine three variables (namely, $P$, $D$ and $Q$, for each of the AutoRegressive, Moving-Average and Residual parts) for trying a SARIMAX model, and select the best one for the purpose to display on the screen. \\
+Normally, this process is done by a statistics graduate, or a senior Data Scientist with a professional background, but, in our case, we have found a more adept solution for our problem. \\
+For assessing a model's usability, Akaike's Information Criterion was used. The model which yields the lowest AIC score was to be used. \\
+The following example code, as it is implemented in the project, uses a simple grid search to find the variables $P$, $D$ and $Q$. Itertools module facilitates an easy interface for checking all possible combinations within constraints. The following code segments represent how this step was implemented within the project:\\
+\begin{lstlisting}[language=Python]
+import itertools
+import statsmodels.api as sm
+import numpy as np
+# We need to limit the computation time,
+# So we are only looking on the range [0, 2].
+p = d = q = range(0, 2)
+# Generating all possible combinations of these variables
+pdq = list(itertools.product(p, d, q))
+# Seasonal data will be assumed to have the same variables
+# Seasonality is set to 12, indicating months.
+seasonal_pdq = [(x[0], x[1], x[2], 12) for x in pdq]
+resBest = np.inf # Initially, we will assume the worst
+for param in pdq:
+  for param_seasonal in seasonal_pdq:
+    try:
+      mod = sm.tsa.statespace.SARIMAX(time_series,
+                                      order=param,
+                                      seasonal_order=param_seasonal,
+                                      enforce_stationarity=False,
+                                      enforce_invertibility=False)
+
+      results = mod.fit()
+        if results.aic < resBest:
+          resBest = results.aic
+          paramreality = param
+          paramss = param_seasonal
+     except:
+       continue
+\end{lstlisting}
+\vspace{1.0cm}
+After this -lengthy- process is completed, we can take a look at our best results, using:\\
+\begin{lstlisting}[language=Python]
+mod = sm.tsa.statespace.SARIMAX(endog = self.time_series,                                            
+      order = self.sarimax_parameters[0],
+      seasonal_order= self.sarimax_parameters[1],
+      enforce_stationarity= False,
+      enforce_invertibility= False)
+res = mod.fit()
+pred = res.get_prediction(start = pd.to_datetime(time_series.index[-1]),
+      dynamic = True,
+      end = END_OF_PREDICTION)
+confidence_interval = pred.conf_int()
+\end{lstlisting}
+This typically yields similar results to Facebook Prophet's predictions, but allows for more fine tuning of the model, although it costs more time, it is recommended to run a SARIMAX model on the data even though the Prophet predictions are usable as they are.
+\subsubsection{Possible Drawbacks of StatsModels}
+Performing a grid search is not a computationally easy task. A quad-core CPU takes minutes until completion of a model for a range of $[0, 4]$. And because no multiple-core functionality is defined for SARIMAX models as it seems in Statsmodels, Core 0 of the machine's CPU will be loaded heavily. This can be bypassed by implementing functionality of multiple core execution, but, as this models are enough for monthly resolutions, this was not needed.
+\subsection{PyQt5 (QT Framework)}
+\label{sec:pyqt5}
+PyQt is a set of Python v2 and v3 bindings for The Qt Company's Qt application framework and runs on all platforms supported by Qt including Windows, OS X, Linux, iOS and Android. PyQt5 supports Qt v5.\cite{PyQt}
+\subsubsection{Installation}
+\begin{lstlisting}[language=bash, backgroundcolor = \color{lightgray}]
+	conda install PyQt5
+\end{lstlisting}
+\centerline{or...}
+\begin{lstlisting}[language=bash, backgroundcolor = \color{lightgray}]
+	pip install pyqt5
+\end{lstlisting}
+Appropiate Qt bindings will be located and installed as necessary.
+\subsubsection{Usage}
+Usage of the Qt framework is done in two different ways, one of them is coding the GUI elements in Python, and the other is using Qt Designer. For all intents and purposes, Qt Designer is much easier to use when positioning and constraining different elements on the viewport.
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/QtWindow.png}
+    \caption{An overview of Qt Designer.}
+    \label{fig:QTDesigner}
+\end{figure} \\
+After completing a design for a particular window, Qt Designer outputs a file with .ui extension. This can be loaded in Python to define further elements, such as relevant function calls for when certain buttons are pressed, etc. Here is an example of such an usage:
+\begin{lstlisting}[language=Python]
+from PyQt5.QtWidgets import *
+from PyQt5.uic import loadUi
+# We inherit a class, QMainWindow
+# to be able to have basic functionality
+# in our window.
+class MatplotlibWidget(QMainWindow):
+  def __init__(self):
+    # Inherited class is initialized
+    QMainWindow.__init__(self)
+    #.ui file is loaded
+    loadUi("mainWindow.ui", self)
+    # Then, necessary adjustments can be made
+    self.setWindowTitle("JFM Overseer")
+    # for example, "pushButton_select_files" is
+    # a name defined in "mainWindow.ui", and
+    # QT keeps track of each button.
+    self.pushButton_select_files.clicked.connect(CALLBACK)
+    # This can be further examplified.
+\end{lstlisting}
+\subsubsection{Possible drawbacks of PyQt5}
+Qt Library has a design choice built into it, and while working with layouts, and not using constraints, it has a tendency to break. Also, grid layouts are not snapping correctly, and this causes further trouble in setting up the Ui.
+\subsection{Matplotlib}
+Matplotlib is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms. Matplotlib can be used in Python scripts, the Python and IPython shells, the Jupyter notebook, web application servers, and four graphical user interface toolkits.\cite{Matplotlib} Qt5Agg is an user interface toolkit supported by Matplotlib, and is used in the project for displaying graphs.
+\subsubsection{Installation}
+Matplotlib comes bundled with the Anaconda distributions. For native Python, one can use:
+\begin{lstlisting}[language=bash, backgroundcolor = \color{lightgray}]
+	pip install matplotlib
+\end{lstlisting}
+\subsubsection{Usage}
+A sample usage of Matplotlib is shown below:
+\begin{lstlisting}[language=Python]
+from PyQt5.QtWidgets import *
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
+from matplotlib.figure import Figure
+canvas = FigureCanvasQTAgg(Figure())
+vertical_layout = QVBoxLayout()
+vertical_layout.addWidget(canvas)
+canvas.axes = self.canvas.figure.add_subplot(111)
+canvas.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+canvas.updateGeometry()
+# Inherited from QWidget, __super__ refers to this
+__super__.setLayout(vertical_layout)
+ax = canvas.axes
+ax.clear()
+# For a selected time series data as y,
+y.plot(ax = ax)
+# For slider functionality,
+x_minimum, x_maximum = ax.get_xlim()
+y_minimum, y_maximum = ax.get_ylim()
+# Variable "aspect" will be provided from the slider
+ax.set_aspect(float(abs((x_maximum - x_minimum) / 
+                        (y_maximum - y_minimum))) * 
+                        aspect)
+self.MplWidget.canvas.draw()
+        
+\end{lstlisting}
+
+\subsubsection{Possible issues with Matplotlib}
+\label{sec:matplotlib-issues}
+Matplotlib, if not treated correctly, takes the datetime values as integer values. That is why, we can be greeted with a graph with a high slope, and an aspect ratio of 1:12, for example. That is why I've provided the window with a slider. An example is shown below: \\
+\begin{center}
 
 
+\begin{figure}[ht!]
+    \centering
+    \begin{floatrow}
+      \ffigbox[\FBwidth]{\caption{Slider at a position on the left-hand side}\label{fig:slider-1}}{%
+        \includegraphics[width=0.5\textwidth]{Images/slider-1.png}   % Just a dummy. Replace with your figure.
+      }
+      \ffigbox[\FBwidth]{\caption{Slider at a position on the right-hand side}\label{fig:dummy-2}}{%
+        \includegraphics[width=0.5\textwidth]{Images/slider-2.png}   % Just a dummy. Replace with your figure.
+      }
+    \end{floatrow}
+  \end{figure}
+\end{center}
+\subsection{Testing Phase}
+\label{sec:testing}
+The software was mainly tested by hand. The problems discussed in Section \ref{sec:prophet-issues} were the most time consuming, and issues with Matplotlib components (see section \ref{sec:matplotlib-issues}) were resolved with a GUI slider. \\
+On the accuracy of the forecast, we've seen MAPE (Mean Absolute Percentage Errors) while training as in the range of $1\%$ to $2\%$, but some types of data proved to be extremely difficult to forecast, receiving errors of about $7\%$. As a computer engineering student with no economics background, these results seemed to be an outlier in the tests, and were left to be fixed by the data science team at the company. \\
+Further tests on the accuracy of predictions were presumably done by the company, but as of time of this report, these tests were not disclosed with us.
+\section{About JotForm Inc.}
+\input{Chapters/Jotform.tex} 
+%\section{Methodology}
+%\input{Chapters/03_Methodology_Algorithm_Theory}
 
-\section{Methodology}
-\input{Chapters/03_Methodology_Algorithm_Theory}
+%\section{Results}
+%\input{Chapters/04_Results}
 
-\section{Results}
-\input{Chapters/04_Results}
+%\section{Discussions and Conclusion}
+%\input{Chapters/05_DiscussionsConclusion}
 
-\section{Discussions and Conclusion}
-\input{Chapters/05_DiscussionsConclusion}
-
-\bibliographystyle{plain}
+\bibliographystyle{plainurl}
 \bibliography{Bibliography.bib}
 
-\appendix
-\section{Appendix}
-\input{Chapters/06_Appendix1}
+%\appendix
+%\section{Appendix}
+%\input{Chapters/06_Appendix1}
 
 
 %---------------------------------------------------------------------------------
 %	Example SECTION (Remove this section to finalize the report.
 
 
-\section{Example steps}
-\input{Chapters/Example} % Remove this line to finalize the report.
+%\section{Example steps}
+%\input{Chapters/Example} % Remove this line to finalize the report.
 %---------------------------------------------------------------------------------
 
 
