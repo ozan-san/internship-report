@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is BibTeX, Version 0.99d (TeX Live 2019/Arch Linux)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Main.aux
@@ -60,3 +61,53 @@ while$ -- 13
 width$ -- 7
 write$ -- 66
 (There were 5 warnings)
+=======
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Main.aux
+The style file: plain.bst
+Database file #1: Bibliography.bib.bib
+Warning--empty publisher in TSAForecasting
+You've used 2 entries,
+            2118 wiz_defined-function locations,
+            510 strings with 4282 characters,
+and the built_in function-call counts, 562 in all, are:
+= -- 45
+> -- 30
+< -- 1
++ -- 12
+- -- 10
+* -- 38
+:= -- 103
+add.period$ -- 6
+call.type$ -- 2
+change.case$ -- 9
+chr.to.int$ -- 0
+cite$ -- 3
+duplicate$ -- 24
+empty$ -- 45
+format.name$ -- 10
+if$ -- 111
+int.to.chr$ -- 0
+int.to.str$ -- 2
+missing$ -- 4
+newline$ -- 13
+num.names$ -- 4
+pop$ -- 19
+preamble$ -- 1
+purify$ -- 9
+quote$ -- 0
+skip$ -- 13
+stack$ -- 0
+substring$ -- 10
+swap$ -- 3
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 1
+while$ -- 4
+width$ -- 3
+write$ -- 22
+(There was 1 warning)
+>>>>>>> 1474c763312b4cdec0594255cc6c98f4bfa7b6a4

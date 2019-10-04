@@ -12,7 +12,12 @@
 \graphicspath{{Images/}}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{hyperref}
+<<<<<<< HEAD
 \usepackage{floatrow}
+=======
+\usepackage{listings}
+
+>>>>>>> 1474c763312b4cdec0594255cc6c98f4bfa7b6a4
 %\usepackage{fancyhdr}
 %\pagestyle{fancy}
 
@@ -101,6 +106,7 @@ Student's Signature \hspace{150px} Organization Approval \\
 
 
 \section{Project}
+<<<<<<< HEAD
 The project I have completed is called JFM Overseer. Overseer is an application written in Python 3.7, and is capable of predicting time series. Below is a screenshot taken from the application: \\
 \begin{center}
 
@@ -118,6 +124,10 @@ Analyzing the problem of efficiently forecasting time series was especially diff
 \subsection{Design Phase}
 The overall structure of the application is as in the following diagram:\\
 \begin{table}[ht!]
+=======
+The project I have completed is called JFM Overseer. Overseer is an application written in Python 3.7, preferably for use with Anaconda distributions, and is capable of predicting time series. The overall structure of the application is as in the following diagram: \\
+\begin{table}[ht]
+>>>>>>> 1474c763312b4cdec0594255cc6c98f4bfa7b6a4
 \centering
 \begin{tabular}{|l|ll} 
 \cline{1-1}\cline{3-3}
@@ -142,7 +152,7 @@ Overseer is a tool to analyze Time Series data, which must be given to the progr
 \begin{table}[ht]
 \centering
 \begin{tabular}{| l | l |}
-$t$    & $y$    \\
+$ds$    & $y$    \\
 $t_0$  & $y_0$  \\
 \vdots & \vdots
 \end{tabular}
@@ -153,6 +163,7 @@ My goal was mainly to produce a prediction, namely, we have to define values $m_
 \begin{equation*}
 	P(m_{t} < F(t) < n_{t}) = 0.95
 \end{equation*}
+<<<<<<< HEAD
 must hold. This corresponds to creating a $95\%$ probability interval for the possible observed values of the function $F$ in the future, and means that we have made a prediction. The values $m_t$ and $n_t$ can be averaged to yield a possible future value of $F$. For making this possible, we must first structure the data in a suitable way.
 \subsection{Pandas}
 pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language.\cite{Pandas}
@@ -370,7 +381,39 @@ self.MplWidget.canvas.draw()
 \label{sec:matplotlib-issues}
 Matplotlib, if not treated correctly, takes the datetime values as integer values. That is why, we can be greeted with a graph with a high slope, and an aspect ratio of 1:12, for example. That is why I've provided the window with a slider. An example is shown below: \\
 \begin{center}
+=======
 
+must hold. This corresponds to creating a $95\%$ probability interval for the possible observed values of the function $F$ in the future, and means that we have made a prediction. The values $m_t$ and $n_t$ can be averaged to yield a possible future value of $F$. The process for doing this was explained in (Box and Wilkins CITE). However, before getting to that, we must first process the data. 
+>>>>>>> 1474c763312b4cdec0594255cc6c98f4bfa7b6a4
+
+\subsection{Pandas}
+Pandas is a tool to analyze spreadsheets, and process them in Python, dubbed ``Excel for Python". It has capabilities in displaying, analyzing, converting and processing data.
+\subsubsection{How To Install}
+In a shell, execute:
+
+\begin{lstlisting}[language=bash]
+pip install pandas
+\end{lstlisting}
+... or, in an Anaconda environment, use:
+\begin{lstlisting}[language=bash]
+conda install pandas
+\end{lstlisting}
+to install Pandas to your preferred Python environment. Using Anaconda distributions is recommended for resolving dependency problems, as nearly all of the packages used in the project are already included in Anaconda distributions.
+\subsubsection{Usage}
+An example code snippet from the project is as such:
+\begin{lstlisting}[language=Python]
+import pandas as pd
+df = pd.read_csv(data.csv)
+\end{lstlisting}
+This loads the .csv file into memory, and is modified to suit our needs as such (will be further explained in (XREF FBPROPHET)):
+\begin{lstlisting}[language=Python]
+#'COL1' denoting the first column's name
+# in the .csv file, this was primarily
+# called 'Category' in my company's query results.
+df['COL1'] = df['COL1'].apply(pd.to_datetime)
+dataframe.columns = ['ds', 'y']
+\end{lstlisting}
+After doing this, we can work further on the data.
 
 \begin{figure}[ht!]
     \centering

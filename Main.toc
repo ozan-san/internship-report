@@ -1,4 +1,5 @@
 \babel@toc {english}{}
+<<<<<<< HEAD
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}% 
 \contentsline {section}{\numberline {2}Project}{2}{section.2}% 
 \contentsline {subsection}{\numberline {2.1}Analysis Phase}{3}{subsection.2.1}% 
@@ -31,3 +32,30 @@
 \contentsline {subsubsection}{\numberline {3.2.1}Form Builder}{14}{subsubsection.3.2.1}% 
 \contentsline {subsubsection}{\numberline {3.2.2}PDF Editor}{14}{subsubsection.3.2.2}% 
 \contentsline {subsubsection}{\numberline {3.2.3}JotForm Sheets}{15}{subsubsection.3.2.3}% 
+=======
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}About JotForm Inc.}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Structure of the company}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Products offered by JotForm}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Form Builder}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}PDF Editor}{3}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}JotForm Sheets}{4}{subsubsection.2.2.3}
+\contentsline {section}{\numberline {3}Project}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Time Series Data Specifications}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Pandas}{5}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}How To Install}{5}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Usage}{5}{subsubsection.3.2.2}
+\contentsline {section}{\numberline {4}Methodology}{6}{section.4}
+\contentsline {section}{\numberline {5}Results}{7}{section.5}
+\contentsline {section}{\numberline {6}Discussions and Conclusion}{7}{section.6}
+\contentsline {section}{\numberline {A}Appendix}{8}{appendix.A}
+\contentsline {section}{\numberline {B}Example steps}{8}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}Sub Sections}{8}{subsection.B.1}
+\contentsline {subsection}{\numberline {B.2}Comments}{8}{subsection.B.2}
+\contentsline {subsection}{\numberline {B.3}Tables and Figures}{8}{subsection.B.3}
+\contentsline {subsection}{\numberline {B.4}Mathematics}{9}{subsection.B.4}
+\contentsline {subsection}{\numberline {B.5}Lists}{9}{subsection.B.5}
+\contentsline {subsection}{\numberline {B.6}Bibliography}{10}{subsection.B.6}
+\contentsline {subsection}{\numberline {B.7}Hyperlink to a website}{10}{subsection.B.7}
+\contentsline {subsection}{\numberline {B.8}Learn LaTeX in 30 minutes}{10}{subsection.B.8}
+>>>>>>> 1474c763312b4cdec0594255cc6c98f4bfa7b6a4
